@@ -1,0 +1,15 @@
+<div fxFlex="90%" style="height: 480px; ">
+  <!--<button type="button" class="btn btn-info" (click)="saveData()">Save</button>-->
+  <ag-grid-angular class="container ag-theme-material"
+                   fxLayout="column"
+                   fxFlexFill
+                   [rowData]="rowData"
+                   [columnDefs]="columns"
+                   [gridOptions]="gridOptions"
+                   (cellValueChanged)="onCellValueChanged($event)"
+                   style="height:100%;">
+  </ag-grid-angular>
+  <!--<input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+  <button type="button" class="btn btn-info" (click)="Upload()">Upload</button>-->
+</div>
+<!-- (gridReady)="test()" -->

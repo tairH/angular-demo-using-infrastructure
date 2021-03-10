@@ -1,0 +1,28 @@
+<form [formGroup]="stepFormGroup">
+  <div fxLayout="column">
+    <div class="row">
+      <span class="title">{{firstName}}, {{title}}</span>
+    </div>
+    <div class="row">
+      <moh-radiobutton-group layout="column" [options]="workList" formControlName="work" [MarkAsRequired]=true labelAbove="true" displayField="text" valueField="code"></moh-radiobutton-group>
+    </div>
+  </div>
+</form>
+
+<!--<form [formGroup]="stepFormGroup" class="editForm">
+    <div class="form-horizontal">
+      <div class="tab-pane fade in active">
+        <h2 class="head text-center">{{firstName}}, {{title}}</h2>
+        <br />
+        <div class="row">
+          <moh-radiobutton-group layout="column" [options]="workList" formControlName="work" [MarkAsRequired]=true labelAbove="true" displayField="text" valueField="code"></moh-radiobutton-group>
+        </div>
+        <div class="row">
+          <input type="text" placeholder="עיר" formControlName="aa">
+        </div>
+
+      </div>
+    </div>
+</form>-->
+
+

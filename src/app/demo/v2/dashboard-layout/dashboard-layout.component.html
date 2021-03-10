@@ -1,0 +1,94 @@
+<section>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayout.lt-md="column" style="margin: 0 -15px;">
+      <moh-dashboard-card fxFlex="33.33" [icon]="'envelope'">
+        <moh-dashboard-card-summary
+        [title]="'Supplies'"
+        [value]="'$500'"
+
+        [description]="'this is a sample description'"
+        ></moh-dashboard-card-summary>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="33.33" [menuItems]="menuItems" [title]="'Sample Title'" >
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="33.33" [menuItems]="menuItems" [title]="'Sample Title'" >
+      </moh-dashboard-card>
+
+      <moh-dashboard-card fxFlex="33.33" [menuItems]="menuItems" [title]="'Sample Title'"  [icon]="'envelope'" [iconColor]="'red'" >
+        <moh-dashboard-graph [minHeight]="450"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="33.33" [menuItems]="menuItems" [title]="'Sample Title'"  [icon]="'envelope'" [iconColor]="'green'">
+        <!-- <moh-dashboard-graph [height]="30"></moh-dashboard-graph> -->
+        <moh-dashboard-graph ></moh-dashboard-graph>
+
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="33.33" [title]="'Sample generic text (Centered) '" [center]="true" [menuItems]="menuItems">
+        <p>	&lt;p> Text description of Dashboard component  	&lt;/p></p>
+      </moh-dashboard-card>
+
+
+
+
+      <moh-dashboard-card fxFlex="33.33" [title]="'Description of graph'" [menuItems]="menuItems">
+        <moh-dashboard-graph [chartType]="'pie'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="66.66" [title]="'Description of graph'" [menuItems]="menuItems">
+        <moh-dashboard-graph [chartType]="'pie'" [dashboardGraphData]="simpleChart">
+        </moh-dashboard-graph>
+      </moh-dashboard-card>
+
+
+
+
+
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'pie'" [chartOptions]="this.chartOptions"></moh-dashboard-graph>
+      </moh-dashboard-card>
+
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'line'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'bar'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'horizontalBar'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'radar'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'doughnut'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'polarArea'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'bubble'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'scatter'"
+        [chartData]="  [{ data: [{x: 65, y:1}, {x:59, y:2}, {x:80, y:3}, {x:81, y:4}, {x:56, y:5}, {x:55, y:6}, {x:40, y:7}], label: 'Scatter graph' }]"
+        ></moh-dashboard-graph>
+      </moh-dashboard-card>
+      <moh-dashboard-card fxFlex="50">
+        <moh-dashboard-graph [chartType]="'line'"></moh-dashboard-graph>
+      </moh-dashboard-card>
+
+
+
+
+      <moh-dashboard-card fxFlex="100" [title]="'Description of graph'" [menuItems]="menuItems">
+        <moh-dashboard-graph
+        [chartOptions]="this.chartOptions"
+        [minHeight]="0"
+        [chartType]="'line'"
+        [chartLabels]="['January', 'February', 'March', 'April', 'May', 'June', 'July']"
+        [chartData]="  [{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Profit' },
+        { data: [25, 19, 80, 40, 95, 5, 66], label: 'Cost' }]"
+        [chartLegend]="true"
+        (graphClick)="clickedOnChart($event)"
+        ></moh-dashboard-graph>
+
+      </moh-dashboard-card>
+    </div>
+  </section>

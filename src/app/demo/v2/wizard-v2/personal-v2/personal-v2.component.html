@@ -1,0 +1,67 @@
+<form [formGroup]="stepFormGroup">
+
+  <div fxLayout="column">
+    <div class="row">
+      <span class="title">{{title}}</span>
+    </div>
+    <div class="row" fxLayout="row">
+      <div class="form-detail" fxFlex.gt-xs="30">
+        <moh-textbox formControlName="firstName" [MarkAsRequired]=true></moh-textbox>
+        <moh-error-message *ngIf="stepFormGroup.controls.firstName.touched || !!stepFormGroup['submitted']" [control]="stepFormGroup.controls.firstName"></moh-error-message>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="30">
+        <moh-textbox formControlName="lastName"></moh-textbox>
+        <moh-error-message *ngIf="stepFormGroup.controls.lastName.touched || !!stepFormGroup['submitted']" [control]="stepFormGroup.controls.lastName"></moh-error-message>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="30">
+        <moh-textbox formControlName="email" labelText="אימייל"></moh-textbox>
+        <moh-error-message *ngIf="stepFormGroup.controls.email.touched || !!stepFormGroup['submitted']" [control]="stepFormGroup.controls.email"></moh-error-message>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="20">
+        <moh-slide-toggle [disabled]="toggleDisabled" labelText="מגדר" [options]=slideToggleOptions [defaultSelectedValue]="2" formControlName="toggle" [MarkAsRequired]=true></moh-slide-toggle>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="30">
+        <moh-select formControlName="select" placeholderKey="select" [options]="selectOptions" [displayField]="'Text'" [valueField]="'Code'"></moh-select>
+        <!-- [displayFn]="getDisplayFn()" [valueField]="'code'" -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="30" fxFlex.xs="100">
+        <moh-telephone formControlName="tel"></moh-telephone>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-detail" fxFlex.gt-xs="30" fxLayoutAlign="space-between">
+        <label>ילדים</label><button (click)="addItem()">הוסף ילד</button>
+      </div>
+    </div>
+    <div formArrayName="items" *ngFor="let item of itemsFormArray.controls; let i = index;" fxLayout="column">
+      <span>{{ stepFormGroup.controls.items.controls[i].controls.name.value }}</span>
+      <div fxLayout="row">
+        <div [formGroupName]="i" class="row" fxLayout="row" fxLayoutAlign="space-between" fxFlex.gt-xs="50">
+          <moh-textbox formControlName="name" placeholderKey="name" fxFlex="48"></moh-textbox>
+          <moh-textbox formControlName="age" placeholderKey="age" fxFlex="48"></moh-textbox>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <moh-checkbox textKey="הנני מצהיר שכל הפרטים ששלחתי הינם נכונים" formControlName="checkBox" [MarkAsRequired]=true></moh-checkbox>
+    </div>
+    <div  class="row">
+      <moh-file-upload [uploaderSettings]="settings"
+                       [buttonText]="'+ בחר קובץ'"
+                       [fieldText]="'תיאור הקובץ'"
+                       formControlName="uploader"
+                       [MarkAsRequired]=true>
+      </moh-file-upload><!--[isDisabled]=true-->
+    </div>
+  </div>
+</form>

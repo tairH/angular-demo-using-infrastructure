@@ -1,0 +1,112 @@
+
+<moh-button [text]="'cancel'" (onButtonClick)="cancelEdit()"></moh-button>
+<moh-button [text]="'save'" (onButtonClick)="saveEdit()"></moh-button>
+<moh-mat-table-general-search [defaultValue]="filterValue['generalSearch'] || ''" [placeholderKey]="'globalSearch'"></moh-mat-table-general-search>
+<moh-mat-table-import [textKey]="importTextKey" (onImport)="importUpdateTable($event)">
+</moh-mat-table-import>
+<moh-mat-table-exporter [displayColumns]="displayColumns" [fileName]="'test1'" [textKey]="'ExportToExcel'"></moh-mat-table-exporter>
+
+<moh-mat-table-filter [type]="'toggle'" [column]="'name'" [options]="toggleOptions" [placeholderKey]="'firstName'"></moh-mat-table-filter>
+<mat-table matSort
+           [dataSource]="dataSource" [class.isMobile]="isMobile">
+
+  <!--name-->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>
+      <div fxLayout="column">
+        <div mat-sort-header>name </div>
+        <moh-mat-table-filter [type]="'select'" [column]="'name'" [options]="options" [valueField]="'name1'" [displayField]="'id'" [placeholderKey]="'firstName'" [defaultValue]="filterValue['name'] || ''"> </moh-mat-table-filter>
+      </div>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row">
+      <moh-mat-table-cell [editable]="false" [(cellValue)]="row.name" [column]="'name'"> </moh-mat-table-cell>
+    </mat-cell>
+  </ng-container>
+
+  <!--email-->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>
+      <div fxLayout="column">
+        <div mat-sort-header>
+          email
+        </div>
+        <moh-mat-table-filter [type]="'textbox'" [column]="'email'" [defaultValue]="filterValue['email'] || ''"> </moh-mat-table-filter>
+
+      </div>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row; let i=dataIndex">
+
+      <moh-mat-table-cell  (cellValueChange)="emailChange($event)" [(cellValue)]="row.email" [column]="'email'"> </moh-mat-table-cell>
+
+    </mat-cell>
+
+  </ng-container>
+
+
+  <!--birthDate-->
+  <ng-container matColumnDef="birthDate">
+    <mat-header-cell *matHeaderCellDef>
+      <div fxLayout="column">
+        <div mat-sort-header>
+          birthDate
+        </div>
+        <moh-mat-table-filter [type]="'datepicker'" [column]="'birthDate'" [placeholderKey]="placeholderKey" [defaultValue]="filterValue['birthDate'] || ''"> </moh-mat-table-filter>
+
+
+      </div>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i=dataIndex">
+      <moh-mat-table-cell [type]="'datepicker'" [(cellValue)]="row.birthDate" [column]="'birthDate'"> </moh-mat-table-cell>
+    </mat-cell>
+  </ng-container>
+
+
+  <!--isMale-->
+  <ng-container matColumnDef="isMale">
+    <mat-header-cell *matHeaderCellDef>
+      <div fxLayout="column">
+        <div mat-sort-header>זכר </div>
+        <moh-mat-table-filter [type]="'select'" [options]="options1" [valueField]="'id'" [displayField]="'text'" [column]="'isMale'" [defaultValue]="filterValue['isMale'] || ''"> </moh-mat-table-filter>
+      </div>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row">
+      <moh-mat-table-cell  [type]="'select'" [options]="options1" [valueField]="'id'" [displayField]="'text'" [(cellValue)]="row.isMale" [column]="'isMale'"> </moh-mat-table-cell>
+    </mat-cell>
+  </ng-container>
+
+  <!--id-->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>
+      <div fxLayout="column">
+        <div mat-sort-header>
+          id
+        </div>
+        <moh-mat-table-filter [type]="'textbox'" [column]="'id'"> </moh-mat-table-filter>
+      </div>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i=dataIndex">
+      <moh-mat-table-cell [type]="'select'" [(cellValue)]="row.id" [column]="'id'"
+                          [options]="options$" [valueField]="'id'" [displayField]="'id'">
+      </moh-mat-table-cell>
+    </mat-cell>
+  </ng-container>
+  <!-- Group row -->
+  <ng-container matColumnDef="groupHeader">
+    <mat-cell *matCellDef="let group">
+      <moh-mat-table-group-row [group]="group" [groupByColumns]="groupByColumns"></moh-mat-table-group-row>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['groupHeader']; when: mohMatTableService.isGroup"> </mat-row>
+  <mat-row *matRowDef="let row; columns: displayColumns; "></mat-row>
+
+</mat-table>
+
+
+<div>
+  <moh-mat-table-paginator [pageSize]="itemsPerPage" [length]="dataSource.data?.length" [buttonsMenuSize]="pageButtonsSize" [customStyle]="true"></moh-mat-table-paginator>
+</div>

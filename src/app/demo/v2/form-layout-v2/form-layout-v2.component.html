@@ -1,0 +1,240 @@
+<div class="form-container">
+
+  <!--<input type="file" id="input" (change)="handleFiles($event)">-->
+  <!--  [accept]="'application/pdf'"-->
+  <!--<ngx-doc-viewer [url]="selectedDoc" viewer="pdf" style="width:100%;height:50vh;"></ngx-doc-viewer>-->
+
+  <form [formGroup]="form">
+    <div fxLayout="column" fxLayoutAlign="space-between" class="mainDiv">
+      <moh-form-card title="פרטים אישיים" icnName="perm_identity">
+        <!--<div class="section">
+          <moh-section-title number="1" title=" פרטים אישיים" icnName="perm_identity"></moh-section-title>
+        </div>-->
+        <div class="details-row">
+          <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+               fxLayout.xs="column">
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto" fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="space-between end">
+                <moh-textbox fxFlex="90" formControlName="lastName" type="text" id="lastName" placeholderKey="firstName" [MarkAsRequired]=true
+                             [markAsInvalid]="(form.controls.lastName.touched || !!form['submitted'])
+                         && form.controls.lastName.invalid"></moh-textbox>
+                <moh-tooltip location="below" textKey='firstName'></moh-tooltip>
+              </div>
+              <moh-error-message *ngIf="form.controls.lastName.touched || !!form['submitted']"
+                                 [control]="form.controls.lastName"></moh-error-message>
+            </div>
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-datepicker [validators]="datePickerValidators" formControlName="datePicker"
+                              [MarkAsRequired]="true" labelText="תאריך"
+                              [inputDisabled]="false" [popupDisabled]="false" [isDisabled]="isDisabled"
+                              [markAsInvalid]="(form.controls.datePicker.touched ||
+                  !!form['submitted'])&&!(form.controls.datePicker.valid)"></moh-datepicker>
+              <moh-error-message *ngIf="form.controls.datePicker.touched || !!form['submitted']"
+                                 [control]="form.controls.datePicker"></moh-error-message>
+            </div>
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-password formControlName="password" labelText="סיסמה"
+                            [MarkAsRequired]="true" [markAsInvalid]="(form.controls.password.touched ||
+                         !!form['submitted'])&&!(form.controls.password.valid)"></moh-password>
+              <moh-error-message *ngIf="form.controls.password.touched || !!form['submitted']"
+                                 [control]="form.controls.password"></moh-error-message>
+            </div>
+          </div>
+        </div>
+      </moh-form-card>
+
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-telephone #telephone formControlName="telephone" [MarkAsRequired]="true" labelText="טלפון"
+                           [ignoreInvalidStyle]="false" [isRequired]="true"></moh-telephone>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-select [options]="optionsList" displayField="text" labelText="תיבת בחירה עם ערך לא מאופשר"
+                        formControlName="select" [MarkAsRequired]=true
+                        [isDisabled]="isDisabled" valueField="Id" [forceSelect]="false" optionsDirection="ltr"
+                        [markAsInvalid]="(form.controls.select.touched ||
+                        !!form['submitted'])&&!(form.controls.select.valid)"></moh-select>
+            <moh-error-message *ngIf="form.controls.select.touched || !!form['submitted']"
+                               [control]="form.controls.select"></moh-error-message>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-select [groupsOptions$]="groupsList$" displayField="text" valueField="Id" labelText="תיבת השלמה אוטומטית בתצוגת קבוצות"
+                        isAutoComplete="true" [MarkAsRequired]=true
+                        formControlName="autoComplete"
+                        [isDisabled]="isDisabled"
+                        [markAsInvalid]="(form.controls.autoComplete.touched ||
+                        !!form['submitted'])&&!(form.controls.autoComplete.valid)"></moh-select>
+            <moh-error-message *ngIf="form.controls.autoComplete.touched || !!form['submitted']"
+                               [control]="form.controls.autoComplete"></moh-error-message>
+          </div>
+        </div>
+      </div>
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-multi-select [options]="optionsList1"
+                              displayField="text" valueField="Id"
+                              labelText="תיבת בחירה מרובה"
+                              [MarkAsRequired]=true
+                              formControlName="multiSelect"
+                              [isDisabled]="isDisabled"
+                              [markAsInvalid]="(form.controls.multiSelect.touched ||
+                        !!form['submitted'])&&!(form.controls.multiSelect.valid)"></moh-multi-select>
+            <moh-error-message *ngIf="form.controls.multiSelect.touched || !!form['submitted']"
+                               [control]="form.controls.multiSelect"></moh-error-message>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-autocomplete [options]="autocompleteOptions"
+                              displayField="text" valueField="Id"
+                              labelText="השלמה אוטומטית - חדש"
+                              tagField="tag"
+                              [MarkAsRequired]="true"
+                              formControlName="newAutocomplete"
+                              [isDisabled]="isDisabled"
+                              [showOtherOption]="true"
+                              [markAsInvalid]="(form.controls.newAutocomplete.touched ||
+                        !!form['submitted'])&&!(form.controls.newAutocomplete.valid)"></moh-autocomplete>
+            <moh-error-message *ngIf="form.controls.newAutocomplete.touched || !!form['submitted']"
+                               [control]="form.controls.newAutocomplete"></moh-error-message>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxHide.xs>
+
+          </div>
+        </div>
+      </div>
+      <div>
+
+        <div class="section">
+          <!--<moh-section-title number="2" title=" הערות" icnName="perm_identity"></moh-section-title>-->
+          <moh-section-title title=" הערות"></moh-section-title>
+        </div>
+
+        <div class="details-row">
+          <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+               fxLayout.xs="column">
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-textarea labelText="תיבת טקסט חופשית" formControlName="textarea" [MarkAsRequired]="true" [isDisabled]="isDisabled"
+                            [markAsInvalid]="(form.controls.textarea.touched || !!form['submitted'])
+                          && form.controls.textarea.invalid"></moh-textarea>
+              <moh-error-message *ngIf="form.controls.textarea.touched || !!form['submitted']"
+                                 [control]="form.controls.textarea"></moh-error-message>
+            </div>
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-timeselect labelText="הזן שעה"
+                              [isDisabled]="isDisabled"
+                              formControlName="time"
+                              [format]="24"
+                              [MarkAsRequired]=true
+                              [defaultTime]="'1:00 PM'"
+                              (timeChanged)="timeChanged($event)"></moh-timeselect>
+              <moh-error-message *ngIf="form.controls.time.touched || !!form['submitted']"
+                                 [control]="form.controls.time"></moh-error-message>
+            </div>
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-slide-toggle fxFlex="50" fxFlex.xs="30" [options]="slideToggleOptions" formControlName="toggle" [isDisabled]="isDisabled"></moh-slide-toggle>
+              <moh-error-message *ngIf="form.controls.toggle.touched || !!form['submitted']"
+                                 [control]="form.controls.toggle"></moh-error-message>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="details-row">
+          <div class=form-card fxLayout=column>
+            <moh-section-title textKey="איכות חיים"></moh-section-title>
+            <div class="radio-button-group" fxFlex="100" fxFlex.xs="auto">
+              <moh-radiobutton-table [questions]="questions" labelText="עד כמה אתה מרוצה מ:" [options]="answareOptions" formControlName="radiobuttonTable"></moh-radiobutton-table>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-row">
+          <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+               fxLayout.xs="column">
+            <div class="form-detail" fxFlex="60%" fxFlex.xs="auto">
+              <moh-rating [options]=rating formControlName="rating" labelText='לא מעריך את העובדים' MarkAsRequired=true [notRelevantOption]="ratingNFOption" [unknownOption]="ratingNotKnowOption"></moh-rating>
+              <moh-error-message *ngIf="form.controls.rating.touched || !!form['submitted']" [control]="form.controls.rating"></moh-error-message>
+            </div>
+            <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+              <moh-radiobutton-group layout="row" [isDisabled]="isDisabled" [options]="colorsList" valueField="code" displayField="text" formControlName="radio" [freeTextValidators]="cityValidators" [freeTextOption]="7" [freeTextMarkAsRequired]=true labelAbove="true"></moh-radiobutton-group><!--[freeTextValidators] ="cityValidators" [freeTextOption] ="{ code:7 , text: 'אחר' }" [freeTextMarkAsRequired]=true -->
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="details-row">
+          <div fxFlex="37%" fxFlex.xs="100%">
+            <moh-file-upload [uploaderSettings]="settings"
+                             [buttonText]="'+ בחר קובץ'"
+                             [fieldText]="'קבצים מצורפים'"
+                             formControlName="uploader"
+                             placeholderKey="הזן תיאור לקובץ"
+                             [MarkAsRequired]=true>
+            </moh-file-upload>
+          </div>
+        </div>
+        <div class="moh-row">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-checkbox-group rows="3" [options]="colorsList" displayField="text" valueField="code" formControlName="checkboxGroup" [MarkAsRequired]=true labelAbove="true" [isDisabled]="isDisabled"></moh-checkbox-group>
+            <moh-error-message *ngIf="form.controls.checkboxGroup.dirty || !!form['submitted']" [control]="form.controls.checkboxGroup"></moh-error-message>
+          </div>
+        </div>
+        <div class="moh-row">
+          <moh-info textKey="demoFormInfo" [textParams]="{firstName:form.controls.lastName.value || ''}"></moh-info>
+        </div>
+        <div class="moh-row">
+          <moh-checkbox textKey="demoFormCheckbox" formControlName="checkBox" [MarkAsRequired]=true></moh-checkbox>
+          <moh-error-message *ngIf="form.controls.checkBox.dirty || !!form['submitted']" [control]="form.controls.checkBox"></moh-error-message>
+        </div>
+      </div>
+      <!--<div class="moh-row" fxShow.xs="false">
+        <moh-radiobutton-table [questions]="questions" labelText="עד כמה אתה מרוצה מ:" [options]="answareOptions" formControlName="radiobuttonTable"></moh-radiobutton-table>
+      </div>-->
+      <div class="details-row">
+        <moh-button [text]="'הפוך רכיבים ל disabled'" iconName="keyboard_arrow_left" (onButtonClick)="disable()"></moh-button>
+      </div>
+      <div class="moh-row">
+        <moh-form-card titleKey="כתובת למשלוח מכתבים">
+          <moh-address [displayStreet]="true" [displayCity]="true" [displayZipCode]="true" [displayAppartment]="true" [displayPostbox]="true" [displayEntrance]="true" formControlName="Address" [cityValidators]="cityValidators"></moh-address>
+        </moh-form-card>
+      </div>
+      <div class="moh-row">
+        <moh-signature-pad formControlName="signature"></moh-signature-pad>
+        <moh-error-message *ngIf="form.controls.signature.touched || !!form['submitted']"
+                           [control]="form.controls.signature"></moh-error-message>
+        <!--<img [src]="form.controls.signature.value">-->
+      </div>
+      <div class="moh-row">
+        <moh-rich-text-editor formControlName="richTextEditor" textKey="Rich Text Editor"></moh-rich-text-editor>
+      </div>
+      value: {{form.controls.richTextEditor.value}}
+
+      <div class="moh-row" fxLayoutAlign="center">
+        <moh-submit-button textKey="שלח בקשה" [control]="form" iconName="keyboard_arrow_left" position="right" (onButtonClick)="sendReq()"></moh-submit-button>
+      </div>
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-textarea labelText="תיבת טקסט חובה על תנאי" formControlName="inputRequiredIf" [isDisabled]="isDisabled"
+                          [markAsInvalid]="(form.controls.inputRequiredIf.touched || form.controls.textarea.touched || !!form['submitted'])
+                          && form.controls.inputRequiredIf.invalid"></moh-textarea>
+            <moh-error-message *ngIf="form.controls.inputRequiredIf.touched || form.controls.textarea.touched || !!form['submitted']"
+                               [control]="form.controls.inputRequiredIf"></moh-error-message>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-textarea labelText="תיבת טקסט ואלידאטור דינאמי על תנאי" formControlName="inputConditionalValidator" [isDisabled]="isDisabled"
+                          [markAsInvalid]="(form.controls.inputConditionalValidator.touched || form.controls.textarea.touched || !!form['submitted'])
+                          && form.controls.inputConditionalValidator.invalid"></moh-textarea>
+            <moh-error-message *ngIf="form.controls.inputConditionalValidator.touched || form.controls.textarea.touched || !!form['submitted']"
+                               [control]="form.controls.inputConditionalValidator"></moh-error-message>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+<div fxLayoutAlign="center" fxLayout="row" mohDir="rtl">
+  <div class="container" fxFlex="100" fxLayout="column" ngClass.xs="container-xs">
+    <moh-skip-nav-links [skipToMainMenu]="true" [skipToSubMenu]="true"></moh-skip-nav-links>
+    <header>
+      <moh-header [menuItems]="menuItems" [showMenuToggleButton]="true" [showButtonInHeader]="true" buttonPath="/v1" headerButtonLabelKey="חזרה לדף הבית" currentSiteKey="השתתפות באשפוז" mainSiteKey="רותי" institutionName="שם ארגון" pageTitleKey="טקסט ארוך ארוך טקסט ארוך ארוך טקסט ארוך ארוך" [headerButtonOpenNewTab]="false"></moh-header><!--showButtonInHeader="true" buttonPath ="/v1"-->
+    </header>
+    <!-- <moh-navbar [menuItems]="menuItems"> -->
+      <!--  sidenavTitleKey="mainImageText" -->
+
+      <moh-banner imageUrl="/assets/images/title_image.v2.svg" ltrImageUrl="/assets/images/title_image.png" mainTextKey="טקסט ארוך ארוך טקסט ארוך ארוך טקסט ארוך ארוך" subTextKey="subImageText" textType="light" [dynamicFadePic]="true">
+      </moh-banner>
+
+      <section class="main" fxLayout="row" fxLayoutAlign="center">
+        <moh-main-content fxFlex="72%" fxFlex.xs="88%"></moh-main-content>
+      </section>
+
+    <!-- </moh-navbar> -->
+    <footer>
+      <moh-footer></moh-footer><!-- [miniContactState] ="true" miniContactIcon="outline-info" miniContactTextKey ="cityId" miniContactLink ="http://www.google.com"-->
+    </footer>
+  </div>
+</div>

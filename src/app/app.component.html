@@ -1,0 +1,32 @@
+<!--<div fxLayoutAlign="center" fxLayout="row" mohDir="rtl">
+  <div class="container" fxFlex.gt-sm="80%" fxLayout="column" ngClass.xs="container-xs">
+
+    <moh-spinner></moh-spinner>
+
+    <moh-skip-nav-links [skipToMainMenu]="true" [skipToSubMenu]="true"></moh-skip-nav-links>
+
+    <header>
+      <moh-header [showSelectLanguage]="true" [showBackToHomeButton]="false"></moh-header>
+    </header>
+
+<moh-navbar [menuItems]="menuItems">
+
+  <section class="main" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <moh-main-content fxFlex="94%" fxFlex.xs="92%"></moh-main-content>
+    </div>
+  </section>
+
+</moh-navbar>
+
+<footer>
+  <moh-footer></moh-footer>
+</footer>
+  </div>
+</div>-->
+<moh-spinner></moh-spinner>
+
+<router-outlet></router-outlet>
+
+<button (click)="navigateToV1()" *ngIf="!isV1Active">מעבר לקונספט 1</button>
+<button (click)="navigateToV2()" *ngIf="isV1Active">מעבר לקונספט 2</button>

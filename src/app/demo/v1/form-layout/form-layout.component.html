@@ -1,0 +1,167 @@
+<div class="form-container">
+  <form [formGroup]="demoForm">
+    <div fxLayout="column" fxLayoutAlign="space-between">
+      <div fxLayout="column" class="moh-row">
+        <moh-form-title titleUnderImage="titleUnderImage" imageUrl="/assets/images/title_image.png" imageTextType="light"
+                        mainImageTextKey="mainImageText" subImageTextKey="subImageText"></moh-form-title>
+      </div>
+      <moh-rich-text-message messageKey="welcomeRichText"></moh-rich-text-message>
+      <div class="moh-row">
+        <moh-dropdown-menu [menuId]="1" [buttonText]="'תפריט'"></moh-dropdown-menu>
+
+      </div>
+      <div class="moh-row">
+        <moh-section-title number="1" title="מגיש הבקשה:" icnName="perm_identity"></moh-section-title>
+      </div>
+      <div class="moh-row">
+        <span class="title">א. פרטי התובע\ת</span>
+      </div>
+
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-textbox formControlName="lastName" type="text" id="lastName" [MarkAsRequired]=true></moh-textbox>
+            <moh-error-message *ngIf="demoForm.controls.lastName.touched" [control]="demoForm.controls.lastName"></moh-error-message>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <div fxLayoutAlign="space-between start">
+              <moh-textbox fxFlex="88" formControlName="firstName" placeholderKey="firstName" type="text" id="firstName" [MarkAsRequired]=true></moh-textbox>
+              <!--[useDefaultKey]="false" textKey="firstName1"-->
+              <moh-tooltip fxflex="10" fxlayoutalign="center end" textKey='firstName'></moh-tooltip>
+              <!-- שם פרטי התובע כמו שמופיע בת.ז -->
+            </div>
+            <moh-error-message *ngIf="demoForm.controls.firstName.touched || !!demoForm['submitted']" [control]="demoForm.controls.firstName"></moh-error-message>
+
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-date-select formControlName="dateSelect" fromYear="1880" toYear="2018" sort="desc"></moh-date-select>
+          </div>
+        </div>
+      </div>
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-telephone formControlName="tel" [MarkAsRequired]=true [isRequired]="true"></moh-telephone>
+          </div>
+          <!--<div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-radiobutton-group layout="row" labelText="בחר שם" [options]="namesList" formControlName="radio2" [MarkAsRequired]=true labelAbove="true"></moh-radiobutton-group>
+          </div>-->
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <!--<moh-textarea formControlName="textArea"></moh-textarea>-->
+            <moh-datepicker [maxDate]="maxDate" [minDate]="minDate" [validators]="datePickerValidators" formControlName="datePickerField" [MarkAsRequired]="true" [isRequired]="true" [startDate]="null"></moh-datepicker>
+            <moh-error-message *ngIf="demoForm.controls.datePickerField.touched || !!demoForm['submitted']" [control]="demoForm.controls.datePickerField"></moh-error-message>
+
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-slide-toggle fxFlex="50" fxFlex.xs="30" [options]="asToggleOption(colorsList,'text','code')" defaultSelectedValue="2" formControlName="toggle" [MarkAsRequired]=true></moh-slide-toggle>
+          </div>
+          <!--<div class="form-detail" fxFlex="30%" fxShow.xs="false">
+          </div>-->
+        </div>
+      </div>
+      <div class="details-row">
+        <div fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between"
+             fxLayout.xs="column">
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-select [options]="optionsList" displayField="text" [useDefaultKey]="false" placeholderKey="select" [defaultValue]="optionsList[2]" isAutoComplete="true" formControlName="select" [MarkAsRequired]=true></moh-select>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+            <moh-radiobutton-group layout="row" [options]="colorsList" displayField="text" formControlName="radio" [MarkAsRequired]=true labelAbove="true"></moh-radiobutton-group>
+          </div>
+          <div class="form-detail" fxFlex="30%" fxShow.xs="false">
+            <moh-select [options]="stringArray" placeholderKey="stringArraySelect" [useDefaultKey]="false" isAutoComplete="true" formControlName="stringArraySelect" [MarkAsRequired]=true></moh-select>
+          </div>
+        </div>
+      </div>
+      <!--<div class="moh-row">
+        <moh-radiobutton-table [questions]="questions" labelText="עד כמה אתה מרוצה מ:" [options]="answareOptions" formControlName="radiobuttonTable"></moh-radiobutton-table>
+      </div>-->
+      <div class="moh-row">
+        <moh-form-card titleKey="כתובת למשלוח מכתבים">
+          <moh-address formControlName="Address" [cityValidators]="cityValidators"></moh-address><!--[citiesList]="citiesList" [streetsList]="streetsList"-->
+        </moh-form-card>
+      </div>
+      <moh-divider></moh-divider>
+
+      <!--<div class="moh-row">
+        <moh-rating [options]=rating formControlName="rating" [NROption]=ratingNFOption labelText='לא מעריך את העובדים' MarkAsRequired=true></moh-rating>
+        <moh-error-message *ngIf="demoForm.controls.rating.touched || !!demoForm['submitted']" [control]="demoForm.controls.rating"></moh-error-message>
+      </div>
+      <moh-divider></moh-divider>-->
+
+      <div class="moh-row">
+        <!--<div class="moh-row" fxFlex="90%" fxFlex.sm="100%" fxLayout="row" fxLayoutAlign="space-between">-->
+        <div fxFlex="40.7%" fxFlex.xs="auto">
+          <moh-file-upload [uploaderSettings]="settings"
+                           [buttonText]="'+ בחר קובץ'"
+                           [fieldText]="'תיאור הקובץ'"
+                           formControlName="uploader"
+                           [MarkAsRequired]=true
+                           [additionalInfoTextKey]="'ניתן להעלות 3 קבצים'">
+          </moh-file-upload>
+          <!--[tooltipText]="'ניתן להעלות קבצים מסוג: doc, docx, pdf, tiff, png, jpg, tif, gif.גודל הקובץ המקסימלי הינו  30 MB. לא ניתן להעלות יחד קבצים בעלי שם זהה.'"  -->
+        </div>
+        <!--</div>-->
+      </div>
+      <div class="moh-row">
+        <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+          <moh-password fxFlex="30" formControlName="password" placeholderKey="password"></moh-password>
+        </div>
+        <div class="form-detail" fxFlex="30%" fxFlex.xs="auto">
+          <moh-checkbox-group layout="row" [options]="colorsList" displayField="text" formControlName="checkboxGroup" [MarkAsRequired]=true labelAbove="true"></moh-checkbox-group>
+        </div>
+        <div>
+          <moh-textarea formControlName="textArea"></moh-textarea>
+        </div>
+      </div>
+
+      <div class="moh-row">
+        <moh-form-card titleKey="Form Array Example">
+          <moh-form-array-template [formArray]="demoForm.controls.formArray" [abstractControl]="absControl"
+                                   [maxLength]="3" [enableRemove]="true" [enableFirstItemRemove]="true" fxFlex="100">
+            <ng-template #templateRef let-item>
+              <div fxLayoutAlign="space-between">
+                <div class="form-detail" fxFlex="30" fxFlex.xs="auto">
+                  <moh-textbox [formControl]="item.control.get('firstName')" textKey="firstName"></moh-textbox>
+                  <moh-error-message *ngIf="item.control.get('firstName').touched || !!demoForm['submitted']" [control]="item.control.get('firstName')"></moh-error-message>
+                </div>
+                <div class="form-detail" fxFlex="30" fxFlex.xs="auto">
+                  <moh-textbox [formControl]="item.control.get('lastName')" textKey="lastName"></moh-textbox>
+                  <moh-error-message *ngIf="item.control.get('lastName').touched || !!demoForm['submitted']" [control]="item.control.get('lastName')"></moh-error-message>
+                </div>
+                <div class="form-detail" fxFlex="30" fxFlex.xs="auto">
+                  <moh-textbox [formControl]="item.control.get('address').get('city')" textKey="cityId"></moh-textbox>
+                  <moh-error-message *ngIf="item.control.get('address').get('city').touched || !!demoForm['submitted']" [control]="item.control.get('address').get('city')"></moh-error-message>
+                </div>
+              </div>
+            </ng-template>
+          </moh-form-array-template>
+        </moh-form-card>
+      </div>
+
+      <div class="moh-row">
+        <moh-info textKey="demoFormInfo" [textParams]="{firstName:demoForm.controls.firstName.value || ''}"></moh-info>
+      </div>
+      <div class="moh-row">
+        <moh-checkbox textKey="demoFormCheckbox" formControlName="checkBox" [MarkAsRequired]=true></moh-checkbox>
+      </div>
+
+      <div class="moh-row">
+        <moh-rich-text-editor formControlName="richTextEditor" textKey="Rich Text Editor"></moh-rich-text-editor>
+      </div>
+
+      <div class="moh-row">
+        <moh-recaptcha [visible]="true" formControlName="reCaptcha"></moh-recaptcha>
+        <!--<p *ngIf="demoForm.dirty && demoForm.getError('validError', ['recaptcha']) as error">{{error}}</p>-->
+        <moh-error-message *ngIf="demoForm.controls.reCaptcha.touched || !!demoForm['submitted']" [control]="demoForm.controls.reCaptcha"></moh-error-message>
+      </div>
+      <div class="moh-row" fxLayoutAlign="end">
+        <moh-submit-button textKey="שלח בקשה" [control]="demoForm" iconName="keyboard_arrow_left" (onButtonClick)="sendReq()"></moh-submit-button>
+      </div>
+    </div>
+  </form>
+</div>
+
+

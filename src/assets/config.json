@@ -1,0 +1,11 @@
+{
+  "moh-package": {
+    "appId": 1,
+    "lang": "he",
+    "servicesApiURL": "https://MohServicesApiTest.health.gov.il/",
+    "umbracoApiURL": "http://umbracodataproviderapi.dev.health.gov.il/",
+    "fileUploadApiURL": null,
+    "draftApi": "/api/draft/",
+    "jsonListsPrefixURL": "/assets/lists/"
+  }
+}

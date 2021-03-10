@@ -1,0 +1,31 @@
+.qqq{
+  background-color:aqua;
+  direction:ltr;
+}
+.mat-autocomplete-panel.qqq {
+
+
+  .mat-option:not(.mat-option-disabled) {
+    height: 2.8em;
+    line-height: 2.8em;
+    border-bottom: 1px solid #d4dee7;
+    font-family: 'Open Sans Hebrew';
+    background-color: aqua !important;
+    direction: ltr !important;
+
+    &:hover:not(.mat-option-disabled) {
+      background: #eff4f9;
+      background-color: aqua !important;
+      direction: ltr !important;
+    }
+  }
+
+  .mat-option.mat-selected {
+    &:hover:not(.mat-option-disabled) {
+      background: #eff4f9;
+    }
+
+    background-color: aqua !important;
+    direction: ltr !important;
+  }
+}

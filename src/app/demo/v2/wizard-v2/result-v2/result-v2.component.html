@@ -1,0 +1,11 @@
+<form [formGroup]="stepFormGroup">
+
+  <div fxLayout="column">
+    <div class="row" fxLayout="row">
+      <div class="form-detail" fxFlex.gt-xs="30">
+        <moh-textbox formControlName="signature" [MarkAsRequired]=true></moh-textbox>
+        <moh-error-message *ngIf="stepFormGroup.controls.signature.touched || !!stepFormGroup['submitted']" [control]="stepFormGroup.controls.signature"></moh-error-message>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,10 @@
+<form [formGroup]="stepFormGroup">
+  <div fxLayout="column">
+    <div class="row">
+      <span class="title">{{firstName}}, {{title}}</span>
+    </div>
+    <div class="row">
+      <moh-radiobutton-group layout="column" [options]="workList" [freeTextOption]="4" formControlName="work" [MarkAsRequired]=true labelAbove="true" displayField="text" valueField="code"></moh-radiobutton-group>
+    </div>
+  </div>
+</form>
